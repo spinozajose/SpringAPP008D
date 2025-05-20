@@ -3,53 +3,38 @@ package com.example.EduTech.Controller;
 import com.example.EduTech.Model.Usuario;
 import com.example.EduTech.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/usuarios")
 public class UsuarioController {
-
     @Autowired
-    private UsuarioService usuarioService;
+    UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> listarUsuarios() {
-        return usuarioService.listarUsuarios();
+    public String getAllUsuarios() {
+        return usuarioService.getAllUsuarios();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuario(@PathVariable int id) {
-        return usuarioService.obtenerUsuarioPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public String getUsuarioById(@PathVariable int id) {
+        return usuarioService.getUsuario(id);
     }
 
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.crearUsuario(usuario);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable int id, @RequestBody Usuario usuarioActualizado) {
-        Usuario actualizado = usuarioService.actualizarUsuario(id, usuarioActualizado);
-        if (actualizado != null) {
-            return ResponseEntity.ok(actualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public String postUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.addUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarUsuario(@PathVariable int id) {
-        boolean eliminado = usuarioService.eliminarUsuario(id);
-        if (eliminado) {
-            return ResponseEntity.ok("Usuario eliminado correctamente");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public String deleteUsuario(@PathVariable int id) {
+        return usuarioService.deleteUsuario(id);
+    }
+
+    @PutMapping
+    public String putUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.updateUsuario(usuario);
     }
 }
+
 
