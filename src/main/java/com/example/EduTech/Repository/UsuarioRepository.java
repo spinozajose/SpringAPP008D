@@ -52,7 +52,7 @@ public class UsuarioRepository {
     public String getUsuarios() {
         String output = "";
         for (Usuario usuario : usuarios) {
-            output += "id: " + usuario.getId() + "\n";
+            output += " id: " + usuario.getId() + "\n";
             output += " nombreUsuario: " + usuario.getNombreUsuario() + "\n";
             output += " contrasena: " + usuario.getContrasena() + "\n";
             output += " correo: " + usuario.getCorreo() + "\n";
