@@ -12,21 +12,25 @@ import java.util.Optional;
 public class EvaluacionService {
 
     @Autowired
-    private EvaluacionRepository evaluacionRepository;
+    private EvaluacionRepository repository;
 
-    public List<Evaluacion> getAllEvaluaciones() {
-        return evaluacionRepository.findAll();
+    public Evaluacion crearEvaluacion(Evaluacion evaluacion) {
+        return repository.save(evaluacion);
     }
 
-    public Optional<Evaluacion> getEvaluacionById(int id) {
-        return evaluacionRepository.findById(id);
+    public Evaluacion actualizarEvaluacion(Evaluacion evaluacion) {
+        return repository.save(evaluacion);
     }
 
-    public Evaluacion saveEvaluacion(Evaluacion evaluacion) {
-        return evaluacionRepository.save(evaluacion);
+    public void eliminarEvaluacion(int id) {
+        repository.deleteById(id);
     }
 
-    public void deleteEvaluacion(int id) {
-        evaluacionRepository.deleteById(id);
+    public List<Evaluacion> listarEvaluaciones() {
+        return repository.findAll();
+    }
+
+    public Optional<Evaluacion> obtenerEvaluacionPorId(int id) {
+        return repository.findById(id);
     }
 }

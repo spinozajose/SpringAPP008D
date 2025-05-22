@@ -1,10 +1,5 @@
 package com.example.EduTech.Model.Curso;
 
-
-
-
-
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
