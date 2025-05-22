@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuarios")
 public class UsuarioController {
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @GetMapping
     public String getAllUsuarios() {

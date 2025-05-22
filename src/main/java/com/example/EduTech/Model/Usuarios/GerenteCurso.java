@@ -1,6 +1,6 @@
 package com.example.EduTech.Model.Usuarios;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,5 @@ import lombok.NoArgsConstructor;
 
 @Entity
 public class GerenteCurso extends Usuario {
-
     private boolean activo;
 }
-

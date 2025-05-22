@@ -6,34 +6,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminSistemaService {
 
     @Autowired
-    AdminSistemaRepository repository;
+    private AdminSistemaRepository repository;
 
-    public String crear(AdminSistema admin) {
-        return repository.agregarAdministrador(admin);
+    public AdminSistema crear(AdminSistema admin) {
+        return repository.save(admin);
     }
 
-    public String actualizar(AdminSistema admin) {
-        return repository.actualizarAdministrador(admin);
+    public AdminSistema actualizar(AdminSistema admin) {
+        return repository.save(admin);
     }
 
-    public String desactivar(int id) {
-        return repository.desactivarAdministrador(id);
+    public boolean eliminar(int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
-    public String eliminar(int id) {
-        return repository.eliminarAdministrador(id);
+    public AdminSistema obtenerPorId(int id) {
+        Optional<AdminSistema> admin = repository.findById(id);
+        return admin.orElse(null);
     }
 
     public List<AdminSistema> listar() {
-        return repository.obtenerTodos();
+        return repository.findAll();
     }
 
-    public String obtenerPorId(int id) {
-        return repository.obtenerPorId(id);
+    public boolean desactivar(int id) {
+        Optional<AdminSistema> adminOpt = repository.findById(id);
+        if (adminOpt.isPresent()) {
+            AdminSistema admin = adminOpt.get();
+            admin.setActivo(false);
+            repository.save(admin);
+            return true;
+        }
+        return false;
     }
 }

@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class Estudiante extends Usuario {
 
     private boolean activo;
+    private String nivelAcademico;
 }
