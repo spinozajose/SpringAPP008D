@@ -1,6 +1,6 @@
 package com.example.EduTech.Repository;
 
-import com.example.EduTech.Model.AdminSistema;
+import com.example.EduTech.Model.Usuarios.AdminSistema;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -51,10 +51,12 @@ public class AdminSistemaRepository {
         return administradores;
     }
 
-    public AdminSistema obtenerPorId(int id) {
-        return administradores.stream()
-                .filter(admin -> admin.getId() == id)
-                .findFirst()
-                .orElse(null);
+    public String obtenerPorId(int id) {
+        for (AdminSistema admin : administradores) {
+            if (admin.getId() == id) {
+                return admin.toString();
+            }
+        }
+        return "Administrador no encontrado";
     }
 }

@@ -1,4 +1,4 @@
-package com.example.EduTech.Model;
+package com.example.EduTech.Model.Usuarios;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
     @Id
@@ -18,4 +19,5 @@ public class Usuario {
     private String nombreUsuario;
     private String contrasena;
     private String correo;
+    private String rol;
 }

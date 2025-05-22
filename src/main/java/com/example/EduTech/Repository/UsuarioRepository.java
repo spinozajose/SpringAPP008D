@@ -1,6 +1,6 @@
 package com.example.EduTech.Repository;
 
-import com.example.EduTech.Model.Usuario;
+import com.example.EduTech.Model.Usuarios.Usuario;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

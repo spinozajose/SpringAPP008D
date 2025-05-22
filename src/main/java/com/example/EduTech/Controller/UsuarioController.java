@@ -1,6 +1,6 @@
 package com.example.EduTech.Controller;
 
-import com.example.EduTech.Model.Usuario;
+import com.example.EduTech.Model.Usuarios.Usuario;
 import com.example.EduTech.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

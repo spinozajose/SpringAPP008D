@@ -1,6 +1,6 @@
 package com.example.EduTech.Service;
 
-import com.example.EduTech.Model.Usuario;
+import com.example.EduTech.Model.Usuarios.Usuario;
 import com.example.EduTech.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

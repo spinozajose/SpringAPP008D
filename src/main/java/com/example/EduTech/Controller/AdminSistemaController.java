@@ -1,7 +1,7 @@
 package com.example.EduTech.Controller;
 
 import com.example.EduTech.Service.AdminSistemaService;
-import com.example.EduTech.Model.AdminSistema;
+import com.example.EduTech.Model.Usuarios.AdminSistema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +14,12 @@ public class AdminSistemaController {
     @Autowired
     private AdminSistemaService service;
 
-    @PostMapping
+    @PostMapping("/crear")
     public String crear(@RequestBody AdminSistema admin) {
         return service.crear(admin);
     }
 
-    @PutMapping
+    @PutMapping("/actualizar")
     public String actualizar(@RequestBody AdminSistema admin) {
         return service.actualizar(admin);
     }
@@ -29,18 +29,18 @@ public class AdminSistemaController {
         return service.desactivar(id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public String eliminar(@PathVariable int id) {
         return service.eliminar(id);
     }
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<AdminSistema> listar() {
         return service.listar();
     }
 
     @GetMapping("/{id}")
-    public AdminSistema obtenerPorId(@PathVariable int id) {
+    public String obtenerPorId(@PathVariable int id) {
         return service.obtenerPorId(id);
     }
 }

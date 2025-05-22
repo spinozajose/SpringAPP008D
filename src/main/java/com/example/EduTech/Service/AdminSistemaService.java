@@ -1,6 +1,6 @@
 package com.example.EduTech.Service;
 
-import com.example.EduTech.Model.AdminSistema;
+import com.example.EduTech.Model.Usuarios.AdminSistema;
 import com.example.EduTech.Repository.AdminSistemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class AdminSistemaService {
         return repository.obtenerTodos();
     }
 
-    public AdminSistema obtenerPorId(int id) {
+    public String obtenerPorId(int id) {
         return repository.obtenerPorId(id);
     }
 }
