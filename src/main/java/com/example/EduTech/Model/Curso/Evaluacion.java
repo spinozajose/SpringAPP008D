@@ -22,4 +22,4 @@ public class Evaluacion {
     private int id;
     private String materia;
     private double nota;
-
+}
