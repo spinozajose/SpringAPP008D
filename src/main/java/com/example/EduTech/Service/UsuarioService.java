@@ -1,7 +1,7 @@
-package com.example.SpringApp008D.Service;
+package com.example.EduTech.Service;
 
-import com.example.SpringApp008D.Model.Usuario;
-import com.example.SpringApp008D.Repository.UsuarioRepository;
+import com.example.EduTech.Model.Usuarios.Usuario;
+import com.example.EduTech.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class UsuarioService {
     public void actualizarUsuario(int id, Usuario usuario) {
         Usuario us = usuariosRepository.findById(id).get();
         us.setNombreUsuario(usuario.getNombreUsuario());
-        us.setContraseña(usuario.getContraseña());
+        us.setContrasena(usuario.getContrasena());
         us.setCorreo(usuario.getCorreo());
     }
 }
