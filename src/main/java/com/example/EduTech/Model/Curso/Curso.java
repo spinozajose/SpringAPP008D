@@ -19,5 +19,4 @@ public class Curso {
     private String descripcion;
     private boolean activo;
 
-    //Tendria que hacer un Join entre Curso y Docente
 }

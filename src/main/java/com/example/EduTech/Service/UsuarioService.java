@@ -1,33 +1,39 @@
-package com.example.EduTech.Service;
+package com.example.SpringApp008D.Service;
 
-import com.example.EduTech.Model.Usuarios.Usuario;
-import com.example.EduTech.Repository.UsuarioRepository;
+import com.example.SpringApp008D.Model.Usuario;
+import com.example.SpringApp008D.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    UsuarioRepository usuariosRepository;
 
-    public String addUsuario(Usuario usuario) {
-        return usuarioRepository.addUsuario(usuario);
+    public List<Usuario> obtenerUsuarios() {
+        return usuariosRepository.findAll();
     }
 
-    public String updateUsuario(Usuario usuario) {
-        return usuarioRepository.updateUsuario(usuario);
+    public void agregarUsuario(Usuario usuario) {
+        usuariosRepository.save(usuario);
     }
 
-    public String deleteUsuario(int id) {
-        return usuarioRepository.removeUsuario(id);
+    public Optional<Usuario> obtenerUsuario(int id) {
+        return usuariosRepository.findById(id);
     }
 
-    public String getUsuario(int id) {
-        return usuarioRepository.getUsuario(id);
+    public void eliminarUsuario(int id) {
+        usuariosRepository.deleteById(id);
     }
 
-    public String getAllUsuarios() {
-        return usuarioRepository.getUsuarios();
+    public void actualizarUsuario(int id, Usuario usuario) {
+        Usuario us = usuariosRepository.findById(id).get();
+        us.setNombreUsuario(usuario.getNombreUsuario());
+        us.setContraseña(usuario.getContraseña());
+        us.setCorreo(usuario.getCorreo());
     }
 }

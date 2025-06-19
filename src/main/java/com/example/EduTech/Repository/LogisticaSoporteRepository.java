@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LogisticaSoporteRepository extends JpaRepository<LogisticaSoporte, Integer> {
-    // Puedes agregar consultas personalizadas si es necesario
 }
