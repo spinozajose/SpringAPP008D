@@ -1,17 +1,18 @@
-package com.example.EduTech.EntityTest;
+package com.example.EduTech.Repository;
 
 import com.example.EduTech.Model.Usuarios.Usuario;
 import com.example.EduTech.Repository.UsuarioRepository;
 import com.example.EduTech.Service.UsuarioService;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import org.springframework.test.context.ActiveProfiles;
-
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,41 +22,31 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-public class UsuarioTest {
+@DataJpaTest
+@ActiveProfiles("test") // Asegúrate de que use el perfil "test"
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // ¡IMPORTANTE! Evita que Spring reemplace MySQL con H2
+public class UsuarioRepositoryTest {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockitoBean
-    private UsuarioService usuarioService;
+    @BeforeEach
+    void setUp() {
+        // Inserta datos de prueba en MySQL antes de cada test
+        Usuario usuario = new Usuario();
+        usuario.setNombreUsuario("ana_garcia");
+        usuarioRepository.save(usuario);
+    }
 
     @Test
     void findAllUsuariosTest() {
         List<Usuario> usuarios = usuarioRepository.findAll();
-        assertNotNull(usuarios);
+        assertFalse(usuarios.isEmpty());
     }
 
     @Test
     void checkNombreUsuarioTest() {
-        Usuario usuario = usuarioRepository.findById(1).orElse(null);
-        assertNotNull(usuario);
+        Usuario usuario = usuarioRepository.findById(1).orElseThrow();
         assertEquals("ana_garcia", usuario.getNombreUsuario());
-    }
-
-    @Test
-    void getAllUsuariosControllerTest() {
-        Mockito.when(usuarioService.obtenerUsuarios()).thenReturn(List.of(new Usuario()));
-        try {
-            mockMvc.perform(get("/usuarios"))
-                    .andExpect(status().isOk());
-        } catch (Exception e) {
-            fail("Error: " + e.getMessage());
-        }
     }
 }

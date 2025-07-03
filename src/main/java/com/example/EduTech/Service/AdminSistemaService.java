@@ -30,9 +30,8 @@ public class AdminSistemaService {
         return false;
     }
 
-    public AdminSistema obtenerPorId(int id) {
-        Optional<AdminSistema> admin = repository.findById(id);
-        return admin.orElse(null);
+    public Optional<AdminSistema> obtenerPorId(int id) {
+        return repository.findById(id); // Retorna el Optional directamente
     }
 
     public List<AdminSistema> listar() {
