@@ -13,6 +13,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 public class EvaluacionModelAssembler implements RepresentationModelAssembler<Evaluacion, EntityModel<Evaluacion>> {
 
+     /*
+    RepresentionalModel = Permite a la clase contener una lista de Links de acceso
+    EntityModel = Es un contenedor generico que adjunta la entidad mas una serie de enlaces
+    LinkTo = Es un metodo que nos permite construir los Links o URL's de acceso que posee nuestro controlador
+    */
+
     @Override
     public EntityModel<Evaluacion> toModel(Evaluacion evaluacion) {
         return EntityModel.of(evaluacion,

@@ -15,13 +15,21 @@ public class EvaluacionService {
     private EvaluacionRepository repository;
 
     public Evaluacion crearEvaluacion(Evaluacion evaluacion) {
+        validarNota(evaluacion.getNota());
         return repository.save(evaluacion);
     }
+
 
     public Evaluacion actualizarEvaluacion(Evaluacion evaluacion) {
+        validarNota(evaluacion.getNota());
         return repository.save(evaluacion);
     }
 
+    private void validarNota(double nota) {
+        if (nota < 0.0 || nota > 7.0) {
+            throw new IllegalArgumentException("La nota debe estar entre 0.0 y 7.0");
+        }
+    }
     public void eliminarEvaluacion(int id) {
         repository.deleteById(id);
     }
