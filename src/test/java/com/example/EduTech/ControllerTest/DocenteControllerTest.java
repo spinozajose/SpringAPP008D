@@ -1,4 +1,4 @@
 package com.example.EduTech.ControllerTest;
 
-public class UsuarioControllerTest {
+public class DocenteControllerTest {
 }
