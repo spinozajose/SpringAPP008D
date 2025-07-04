@@ -49,7 +49,7 @@ class UsuarioControllerTest {
         // Arrange
         when(usuarioService.obtenerUsuarios()).thenReturn(Arrays.asList(usuario));
         when(assembler.toCollectionModel(any())).thenReturn(CollectionModel.of(
-                Arrays.asList(EntityModel.of(usuario)));
+                Arrays.asList(EntityModel.of(usuario))));
 
         // Act
         ResponseEntity<CollectionModel<EntityModel<Usuario>>> response =
@@ -60,7 +60,6 @@ class UsuarioControllerTest {
         assertNotNull(response.getBody());
         assertEquals(1, response.getBody().getContent().size());
     }
-
     @Test
     void obtenerTodosUsuarios_ReturnsNotFound_WhenNoUsersExist() {
         // Arrange
